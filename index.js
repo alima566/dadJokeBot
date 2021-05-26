@@ -20,7 +20,11 @@ const dadJoke = new cron.CronJob("00 00 */4 * * *", async () => {
       },
     });
     const data = await resp.json();
-    T.post("statuses/update", { status: data.joke }, tweeted);
+    T.post(
+      "statuses/update",
+      { status: `${data.joke}\n\n#dadjokes #dadjoke` },
+      tweeted
+    );
   } catch (e) {
     console.log(e);
   }
